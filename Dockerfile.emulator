@@ -1,0 +1,14 @@
+FROM node:23.5-alpine
+
+WORKDIR /src
+COPY ./firebase.json /src
+# Install OpenJDK-11
+RUN apk update && \
+  apk add --no-cache openjdk11 && \
+  apk add curl \
+  rm -rf /var/cache/apk/* 
+
+WORKDIR /src
+RUN npm i -g firebase-tools && firebase --version
+EXPOSE 4000 4400 4500 8080 9099 9150
+CMD ["firebase", "emulators:start" ,"--project","test"]

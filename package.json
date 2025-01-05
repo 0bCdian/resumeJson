@@ -1,0 +1,35 @@
+{
+	"name": "json_cv_api",
+	"scripts": {
+		"build:server": "bun run --filter @json_cv_api/server build",
+		"build:server:test": "bun run --filter @json_cv_api/server build:test",
+		"build:frontend_server": "bun run --filter @json_cv_api/frontend_server build",
+		"build:frontend_server:test": "bun run --filter @json_cv_api/frontend_server build:test",
+		"build:frontend": "bun run --filter @json_cv_api/frontend build",
+		"build:frontend:test": "bun run --filter @json_cv_api/frontend build:test",
+		"build:all": "bun run build:server && bun run build:frontend_server && bun run build:frontend",
+		"build:all:test": "bun run build:server:test && bun run build:frontend_server:test && bun run build:frontend:test",
+		"server:dev": "bun run --hot ./packages/server/src/index.ts",
+		"frontend_server:dev": "bun run --hot ./packages/frontend_server/src/index.ts",
+		"frontend:dev": "",
+		"clean": "rm -rf dist",
+		"test": "vitest"
+	},
+	"private": "true",
+	"dependencies": {},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"vitest": "^2.1.8"
+	},
+	"type": "module",
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"workspaces": [
+		"packages/server",
+		"packages/frontend",
+		"packages/lambdas",
+		"packages/modules",
+		"packages/frontend_server"
+	]
+}

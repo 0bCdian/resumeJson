@@ -1,0 +1,25 @@
+{
+	"name": "@json_cv_api/modules",
+	"version": "1.0.0",
+	"devDependencies": {
+		"@types/bun": "latest"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"@ai-sdk/openai": "^1.0.6",
+		"ai": "^4.0.10",
+		"firebase-admin": "^13.0.1",
+		"pino": "^9.5.0",
+		"tiktoken": "^1.0.17",
+		"zod": "^3.23.8"
+	}
+}

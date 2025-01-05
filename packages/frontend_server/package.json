@@ -1,0 +1,23 @@
+{
+	"name": "@json_cv_api/frontend_server",
+	"version": "1.0.0",
+	"main": "index.js",
+	"dependencies": {
+		"firebase-admin": "^13.0.2",
+		"@json_cv_api/modules": "workspace:*"
+	},
+	"devDependencies": {
+		"@types/bun": "^1.1.14"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "bun run --hot ./src/index.ts",
+		"start": "bun run ./dist/index.js",
+		"build": "bun build ./src/index.ts --target=bun --outdir=./dist",
+		"build:test": "bun build ./src/index.ts --target=bun --outdir=./dist-test"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": ""
+}

@@ -15,7 +15,8 @@ lerna-debug.log*
 .cache
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
-
+html
+report.json
 report.[0-9]_.[0-9]_.[0-9]_.[0-9]_.json
 
 # Runtime data

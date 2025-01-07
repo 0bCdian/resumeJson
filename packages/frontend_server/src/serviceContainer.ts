@@ -8,14 +8,15 @@ import { UserDelete } from "@json_cv_api/modules/src/User/Application/UserDelete
 import { UserGet } from "@json_cv_api/modules/src/User/Application/UserGet";
 import { applicationDefault, initializeApp } from "firebase-admin/app";
 import { CONFIG } from "./config/projectConfig";
-import { getFirestore } from "firebase-admin/firestore";
 import { getAuth } from "firebase-admin/auth";
+import { initializeFirestore } from "firebase-admin/firestore";
 
-initializeApp({
+const app = initializeApp({
 	credential: applicationDefault(),
-	projectId: CONFIG.fireStoreProjectId,
 });
-const firebaseInstance = getFirestore();
+console.log(process.env)
+const firebaseInstance = initializeFirestore(app);
+console.log(firebaseInstance)
 const auth = getAuth();
 const apiKeyRepository = new FireStoreApiKeyRepository(firebaseInstance);
 const userRepository = new FireStoreUserRepository(firebaseInstance);

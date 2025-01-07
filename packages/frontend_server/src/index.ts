@@ -22,7 +22,7 @@ app.use(logger());
 app.use(
 	"*",
 	cors({
-		origin: ["http://localhost:3001"],
+		origin: ["http://localhost:3002"],
 		credentials: true,
 		allowMethods: ["GET", "POST", "DELETE", "OPTIONS"],
 		allowHeaders: ["Content-Type", "Authorization"],

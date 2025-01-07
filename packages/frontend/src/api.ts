@@ -4,9 +4,10 @@ type params = {
 	user: firebaseUser | null;
 };
 const isProd = import.meta.env.PROD;
-const BASE_URL = isProd
+const BASE_URL = isProd || import.meta.env.VITE_TESTING === "true"
 	? window.location.origin
 	: import.meta.env.VITE_SERVER_HOST_DEV;
+
 export async function createApi({ user }: params): Promise<NewApiKey | null> {
 	try {
 		const url = `${BASE_URL}/api/keys`;

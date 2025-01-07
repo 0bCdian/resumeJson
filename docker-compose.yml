@@ -3,12 +3,43 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile.emulator
-      args:
-        - FIREBASE_VERSION=13.3.0
     environment:
-      GCLOUD_PROJECT: "test"
-      FORCE_COLOR: "true"
+      FIRESTORE_PROJECT_ID: "test"
     ports:
-      - "4000:4000" # Emulator UI
-      - "8080:8080" # Firestore
-      - "9099:9099" # Auth
+      - 8080:8080 # **FIRESTORE_PORT**
+      - 5005:5005 # **FIRESTORE_WS_PORT**
+      - 4000:4000 # **UI_PORT**
+      - 4400:4400 # **UI_PORT**
+      - 4500:4500 # **UI_PORT**
+      - 8085:8085 # **PUBSUB_PORT**
+      - 5001:5001 # **FUNCTIONS_PORT**
+      - 9099:9099 # **AUTH_PORT**
+      - 9150:9150 # **AUTH_PORT**
+
+
+  # frontend-service:
+  #   build:
+  #     context: ./
+  #     dockerfile: Dockerfile.frontend-server-test
+  #   depends_on:
+  #     - emulator
+  #   environment:
+  #     FIRESTORE_PROJECT_ID: "test"
+  #     GCLOUD_PROJECT: "test"
+  #     FIRESTORE_EMULATOR_HOST: "emulator:8080"
+  #     FIREBASE_AUTH_EMULATOR_HOST: "emulator:9099"
+  #   ports:
+  #     - "3000:3000"
+  # server:
+  #   build:
+  #     context: ./
+  #     dockerfile: Dockerfile.server-test
+  #   depends_on:
+  #     - emulator
+  #   environment:
+  #     FIRESTORE_PROJECT_ID: "test"
+  #     GCLOUD_PROJECT: "test"
+  #     FIRESTORE_EMULATOR_HOST: "emulator:8080"
+  #     FIREBASE_AUTH_EMULATOR_HOST: "emulator:9099"
+  #   ports:
+  #     - "3001:3001"

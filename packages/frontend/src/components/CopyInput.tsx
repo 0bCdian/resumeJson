@@ -20,7 +20,7 @@ export function CopyInput({ value }: Props) {
 				/>
 				<div
 					data-copied={isCopied}
-					onKeyDown={() => {
+					onMouseDown={() => {
 						if (ref.current) {
 							navigator.clipboard
 								.writeText(ref.current.value)

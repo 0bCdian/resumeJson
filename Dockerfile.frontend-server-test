@@ -1,0 +1,24 @@
+FROM build:latest AS base
+
+FROM oven/bun:alpine AS frontend-server-test
+
+WORKDIR /app
+
+COPY --from=base /build/packages/frontend_server/package.json .
+COPY --from=base /build/packages/frontend_server/dist-test/ ./dist
+COPY --from=base /build/packages/frontend/dist-test/ ./static
+
+RUN apk update && apk add curl --no-cache
+
+ENV ENV="development"
+ENV PORT=3000
+ENV FIRESTORE_EMULATOR_HOST=localhost:8080
+ENV FIREBASE_AUTH_EMULATOR_HOST=localhost:9099
+ENV FIRESTORE_PROJECT_ID=test
+
+EXPOSE ${PORT}
+
+CMD [ "bun","run","start" ]
+
+
+

@@ -1,12 +1,19 @@
-FROM oven/bun:alpine
-ARG MODE="production"
+FROM build:latest AS base
+
+FROM oven/bun:alpine AS server
+
 WORKDIR /app
 
-COPY . .
+COPY --from=base /build/packages/server/dist ./dist
+COPY --from=base /build/packages/server/package.json .
+
 RUN apk update && apk add poppler-utils --no-cache
-RUN bun install && bun run build
-ENV ENV MODE
+
+ENV PORT=8080
+ENV ENV="production"
+ENV OPEN_AI_API_KEY ${OPEN_AI_API_KEY}
 EXPOSE ${PORT}
+
 CMD [ "bun","run","start" ]
 
 

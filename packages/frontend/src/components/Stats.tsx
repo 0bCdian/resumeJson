@@ -12,7 +12,7 @@ type Props = {
 };
 
 export function Stats({ userData }: Props) {
-	if (!userData) return null;
+	if (!userData) return;
 	return (
 		<div className="stats stats-vertical lg:stats-horizontal shadow-customShadow bg-base-300 text-xl">
 			<div className="stat gap-2">

@@ -1,5 +1,10 @@
-import { JsonResume } from "../../../src/Resume/domain";
-
+import { JsonResume } from "@modules/Resume/Domain/Entities/JsonResume";
+export const exampleUser = {
+  id: "123e4567-e89b-12d3-a456-426614174000", // UUID
+  maxApiCallsPerMonth: 1000,
+  maxTokensPerRequests: 5000,
+  currentApiCallCount: 200,
+};
 const resume = {
   basics: {
     email: "jobs@libdb.so",
@@ -169,4 +174,4 @@ const resume = {
   ],
 };
 
-export const stubResume = new JsonResume("1", resume);
+export const stubResume = new JsonResume(exampleUser.id, resume);

@@ -85,7 +85,7 @@ export class FireStoreJobRepository implements JobRepository {
 							status: newJobInfo.status,
 							resourceLocation: newJobInfo.resourceLocation,
 						};
-						await docRef.update(updatedJob);
+						await docRef.set(updatedJob);
 					}
 					break;
 				case "failed":
@@ -95,7 +95,7 @@ export class FireStoreJobRepository implements JobRepository {
 							status: newJobInfo.status,
 							error: newJobInfo.error,
 						};
-						await docRef.update(updatedJob);
+						await docRef.set(updatedJob);
 					}
 					break;
 				default:

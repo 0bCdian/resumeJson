@@ -1,0 +1,10 @@
+FROM oven/bun:alpine AS build
+
+ARG mode="production"
+WORKDIR /build
+
+COPY ./packages ./packages
+COPY ./bun.lockb .
+COPY ./package.json .
+
+RUN bun install && bun run build:all && bun run build:all:test

@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "paths": {
+      "@frontend/*": ["packages/frontend/src/*"],
+      "@frontend_server/*": ["packages/frontend_server/src/*"],
+      "@lambdas/*": ["packages/lambdas/src/*"],
+      "@modules/*": ["packages/modules/src/*"],
+      "@server/*": ["packages/server/src/*"]
+    }
+  }
+}

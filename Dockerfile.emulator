@@ -1,14 +1,17 @@
 FROM node:23.5-alpine
 
+ENV FIRESTORE_PROJECT_ID="test"
+
 WORKDIR /src
-COPY ./firebase.json /src
-# Install OpenJDK-11
+
+COPY ./firebase.json .
+
 RUN apk update && \
   apk add --no-cache openjdk11 && \
   apk add curl \
   rm -rf /var/cache/apk/* 
 
-WORKDIR /src
+
 RUN npm i -g firebase-tools && firebase --version
 EXPOSE 4000 4400 4500 8080 9099 9150
-CMD ["firebase", "emulators:start" ,"--project","test"]
+CMD ["/bin/sh", "-c", "firebase emulators:start --project $FIRESTORE_PROJECT_ID"]

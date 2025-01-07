@@ -1,4 +1,4 @@
-import type { TextParser } from "../domain/TextParser";
+import type { TextParser } from "../Domain/TextParser";
 const { Poppler } = require("node-poppler");
 export class PDFParserService implements TextParser {
 	async parse(buffer: Buffer): Promise<string> {

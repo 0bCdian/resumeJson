@@ -16,12 +16,13 @@ import { ApiKeyValidate } from "@json_cv_api/modules/src/Auth/Application/ApiKey
 import { UserUpdateQuota } from "@json_cv_api/modules/src/User/Application/UserUpdateQuota";
 import { CONFIG } from "./config/projectConfig";
 import { getFirestore } from "firebase-admin/firestore";
+import { initializeFirestore } from "firebase-admin/firestore";
 
-initializeApp({
+const app =initializeApp({
 	credential: applicationDefault(),
 	projectId: process.env.FIRESTORE_PROJECT_ID,
 });
-const firebaseInstance = getFirestore();
+const firebaseInstance = initializeFirestore(app,{preferRest:true});
 const apiKeyRepository = new FireStoreApiKeyRepository(firebaseInstance);
 const userRepository = new FireStoreUserRepository(firebaseInstance);
 const tokenizer = new TokenizerService();

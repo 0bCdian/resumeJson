@@ -9,6 +9,7 @@
 		"build": "vite build --mode production",
 		"build:test": "NODE_ENV=development VITE_TESTING=true vite build --mode development --outDir ./dist-test",
 		"serve": "vite preview",
+    "test":"echo test",
 		"start": "vite"
 	},
 	"devDependencies": {

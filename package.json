@@ -10,16 +10,22 @@
 		"build:all": "bun run build:server && bun run build:frontend_server && bun run build:frontend",
 		"build:all:test": "bun run build:server:test && bun run build:frontend_server:test && bun run build:frontend:test",
 		"server:dev": "bun run --filter @json_cv_api/server dev",
-		"frontend_server:dev": "bun run --filter @json_cv_api/frontend_server dev",
 		"frontend:dev": "bun run --filter @json_cv_api/frontend dev",
-    "dev:all":"bun run frontend_server:dev & bun run server:dev & bun run frontend:dev",
+		"frontend_server:dev": "bun run --filter @json_cv_api/frontend_server dev",
+		"modules:test": "bun run --filter @json_cv_api/modules test",
+		"frontend:test": "bun run --filter @json_cv_api/frontend test",
+		"frontend_server:test": "bun run --filter @json_cv_api/frontend_server test",
+		"server:test": "bun run --filter @json_cv_api/server test",
+		"dev:all": "bun run frontend_server:dev & bun run server:dev & bun run frontend:dev",
 		"clean": "rm -rf dist",
-		"test": "vitest"
+		"test": "vitest",
+		"test:run": "vitest run"
 	},
 	"private": "true",
 	"dependencies": {},
 	"devDependencies": {
 		"@biomejs/biome": "1.9.4",
+		"@vitest/ui": "2.1.8",
 		"vitest": "^2.1.8"
 	},
 	"type": "module",

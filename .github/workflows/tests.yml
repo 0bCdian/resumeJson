@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-      - run: bun run install
+      - run: bun install
       - run: bun run build:all
       - run: ./scripts/run-docker-tests.sh
       - name: Archive test artifacts

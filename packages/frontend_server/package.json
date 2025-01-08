@@ -1,24 +1,24 @@
 {
-	"name": "@json_cv_api/frontend_server",
-	"version": "1.0.0",
-	"main": "index.js",
-	"dependencies": {
-		"@json_cv_api/modules": "workspace:*",
-		"firebase-admin": "^13.0.2",
-		"hono": "^4.6.16"
-	},
-	"devDependencies": {
-		"@types/bun": "^1.1.14"
-	},
-	"scripts": {
-		"test": "echo test",
-		"dev": "PORT=3001 bun run --hot ./src/index.ts",
-		"start": "bun run ./dist/index.js",
-		"build": "bun build ./src/index.ts --target=bun --outdir=./dist",
-		"build:test": "bun build ./src/index.ts --target=bun --outdir=./dist-test"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"description": ""
+  "name": "@json_cv_api/frontend_server",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "@json_cv_api/modules": "workspace:*",
+    "firebase-admin": "^13.0.2",
+    "hono": "^4.6.16"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.14"
+  },
+  "scripts": {
+    "test": "echo test",
+    "dev": "PORT=3001 bun run --hot ./src/index.ts",
+    "start": "bun run ./dist/index.js",
+    "build": "bun build ./src/index.ts --target=bun --outdir=./dist",
+    "build:test": "bun build ./src/index.ts --target=bun --outdir=./dist-test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

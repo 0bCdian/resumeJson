@@ -14,9 +14,7 @@ import { initializeFirestore } from "firebase-admin/firestore";
 const app = initializeApp({
 	credential: applicationDefault(),
 });
-console.log(process.env)
 const firebaseInstance = initializeFirestore(app);
-console.log(firebaseInstance)
 const auth = getAuth();
 const apiKeyRepository = new FireStoreApiKeyRepository(firebaseInstance);
 const userRepository = new FireStoreUserRepository(firebaseInstance);

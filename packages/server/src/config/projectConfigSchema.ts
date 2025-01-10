@@ -21,6 +21,8 @@ export const configSchema = z.object({
 		.positive()
 		.describe("How long of a resume a user can parse converted to tokens"),
 	openAIApiKey: z.string().describe("openAIApiKey").optional(),
+  dbUrl:z.string().describe("firestore url to connect to"),
+  projectID:z.string(),
 	env: z
 		.union([z.literal("development"), z.literal("production")])
 		.default("development"),

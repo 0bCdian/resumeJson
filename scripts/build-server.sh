@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 set -e
 TAG="$(git rev-parse --short HEAD)"
 REGISTRY="$REGISTRY_NAME"

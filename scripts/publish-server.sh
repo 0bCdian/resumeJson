@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 set -e
 IMAGE="$(cat "$PWD/server-docker-image.txt")"
 

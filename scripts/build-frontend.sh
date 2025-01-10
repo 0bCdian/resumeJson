@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 set -e
 REQUIRED_ENVS=(
   VITE_FIREBASE_API_KEY
@@ -22,6 +22,6 @@ done
 
 TAG="$(git rev-parse --short HEAD)"
 REGISTRY="$REGISTRY_NAME"
-FRONTEND_IMAGE="$REGISTRY/frontend_server:$TAG"
+FRONTEND_IMAGE="$REGISTRY/frontend-server:$TAG"
 docker build --file "$PWD/Dockerfile.frontend-server" -t "$FRONTEND_IMAGE" .
 echo "$FRONTEND_IMAGE" >frontend-docker-image.txt

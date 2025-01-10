@@ -15,12 +15,13 @@ import { ResumeGet } from "@json_cv_api/modules/src/Resume/Application/ResumeGet
 import { ApiKeyValidate } from "@json_cv_api/modules/src/Auth/Application/ApiKeyValidate";
 import { UserUpdateQuota } from "@json_cv_api/modules/src/User/Application/UserUpdateQuota";
 import { CONFIG } from "./config/projectConfig";
-import { getFirestore } from "firebase-admin/firestore";
 import { initializeFirestore } from "firebase-admin/firestore";
 
 const app =initializeApp({
 	credential: applicationDefault(),
-	projectId: process.env.FIRESTORE_PROJECT_ID,
+	projectId:CONFIG.projectID,
+  databaseURL:CONFIG.dbUrl
+  
 });
 const firebaseInstance = initializeFirestore(app,{preferRest:true});
 const apiKeyRepository = new FireStoreApiKeyRepository(firebaseInstance);

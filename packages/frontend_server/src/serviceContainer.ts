@@ -13,6 +13,8 @@ import { initializeFirestore } from "firebase-admin/firestore";
 
 const app = initializeApp({
 	credential: applicationDefault(),
+  databaseURL:CONFIG.dbUrl,
+  projectId:CONFIG.projectID
 });
 const firebaseInstance = initializeFirestore(app);
 const auth = getAuth();

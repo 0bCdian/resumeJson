@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-IMAGE="$(cat "$PWD/frontend-docker-image.txt")"
+IMAGE="$(cat "$PWD/test-reporter-docker-image.txt")"
 
 if [[ -z "$IMAGE" ]]; then
   echo "no image found"

@@ -1,0 +1,21 @@
+name: Staging deploy
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  staging-deploy:
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Google Auth
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+      - name: Build docker images
+        run: |
+          ./scripts/build

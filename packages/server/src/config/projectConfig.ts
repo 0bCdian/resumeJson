@@ -7,6 +7,8 @@ const EXPIRE_CONSTANT = 7 * 24 * 60 * 60 * 1000;
 export const CONFIG = {
 	userDefaultApiCalls: 500,
 	env: env.ENV,
+  dbUrl:env.DB_URL,
+  projectID:env.GCLOUD_PROJECT,
 	userMaxCallsPerMinute: 20,
 	openAIApiKey: env.OPEN_AI_API_KEY,
 	fireStoreProjectId: env.FIRESTORE_PROJECT_ID,

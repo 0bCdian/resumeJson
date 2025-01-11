@@ -20,11 +20,12 @@ export const configSchema = z.object({
 		.int()
 		.positive()
 		.describe("How long of a resume a user can parse converted to tokens"),
-	openAIApiKey: z.string().describe("openAIApiKey").optional(),
+	openAIApiKey: z.string().describe("openAIApiKey"),
+	dbID: z.string().describe("firestore id to connect to"),
+	projectID: z.string(),
 	env: z
 		.union([z.literal("development"), z.literal("production")])
 		.default("development"),
-	fireStoreProjectId: z.string().describe("fireStoreProjectId").optional(),
 });
 
 export type configType = z.infer<typeof configSchema>;

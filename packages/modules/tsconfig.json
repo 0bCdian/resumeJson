@@ -1,19 +1,19 @@
 {
-  "compilerOptions": {
-    "strict": true,
-    "resolveJsonModule": true,
-    "esModuleInterop": true,
-    "useUnknownInCatchVariables": true,
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"],
-      "@tests/*": ["tests/*"],
-      "@mocks/*": ["tests/mocks/*"],
-      "@auth/*": ["src/Auth/*"],
-      "@job/*": ["src/Job/*"],
-      "@resume/*": ["src/Resume/*"],
-      "@shared/*": ["src/Shared/*"],
-      "@user/*": ["src/User/*"]
-    }
-  }
+	"compilerOptions": {
+		"strict": true,
+		"resolveJsonModule": true,
+		"esModuleInterop": true,
+		"useUnknownInCatchVariables": true,
+		"baseUrl": ".",
+		"paths": {
+			"@/*": ["src/*"],
+			"@tests/*": ["tests/*"],
+			"@mocks/*": ["tests/mocks/*"],
+			"@auth/*": ["src/Auth/*"],
+			"@job/*": ["src/Job/*"],
+			"@resume/*": ["src/Resume/*"],
+			"@shared/*": ["src/Shared/*"],
+			"@user/*": ["src/User/*"]
+		}
+	}
 }

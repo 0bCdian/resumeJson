@@ -1,0 +1,44 @@
+name: Staging deploy
+on:
+  push:
+    branches:
+      - staging
+env:
+  VITE_FIREBASE_API_KEY: ${{secrets.VITE_FIREBASE_API_KEY}}
+  VITE_FIREBASE_AUTH_DOMAIN: ${{secrets.VITE_FIREBASE_AUTH_DOMAIN}}
+  VITE_FIREBASE_PROJECT_ID: ${{secrets.VITE_FIREBASE_PROJECT_ID}}
+  VITE_FIREBASE_STORAGE_BUCKET: ${{secrets.VITE_FIREBASE_STORAGE_BUCKET}}
+  VITE_FIREBASE_MESSAGING_SENDER_ID: ${{secrets.VITE_FIREBASE_MESSAGING_SENDER_ID}}
+  VITE_FIREBASE_APP_ID: ${{secrets.VITE_FIREBASE_APP_ID}}
+  REGISTRY_NAME: ${{vars.REGISTRY_NAME}}
+  GCLOUD_PROJECT: ${{vars.GCLOUD_PROJECT}}
+  DB_ID: ${{vars.DB_ID}}
+  REPORTER_BUCKET: ${{vars.REPORTER_BUCKET}}
+  SERVER_SERVICE_ACCOUNT: ${{vars.SERVER_SERVICE_ACCOUNT}}
+  REPORTER_SERVICE_ACCOUNT: ${{vars.REPORTER_SERVICE_ACCOUNT}}
+  LAMBDA_SERVICE_ACCOUNT: ${{vars.LAMBDA_SERVICE_ACCOUNT}}
+  FRONTEND_SERVICE_ACCOUNT: ${{vars.FRONTEND_SERVICE_ACCOUNT}}
+
+jobs:
+  staging-deploy:
+    runs-on: ubuntu-latest
+    environment: staging
+    strategy:
+      matrix:
+        package: ["server", "frontend", "lambdas"]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Google Auth
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+      - name: Check changes
+        run: |
+          ./scripts/detect-changes.sh ${{matrix.package}}
+      - name: Build
+        if: env.CHANGED == "true"
+        run: |
+          ./scripts/build.sh ${{matrix.package}}
+          ./scripts/deploy.sh ${{matrix.package}}

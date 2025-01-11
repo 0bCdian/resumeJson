@@ -1,4 +1,4 @@
-import {  encodingForModel } from "js-tiktoken";
+import { encodingForModel } from "js-tiktoken";
 import type { Tokenizer } from "../Domain/Tokenizer";
 import { hash as hasher } from "bun";
 const model = "gpt-4o-mini";

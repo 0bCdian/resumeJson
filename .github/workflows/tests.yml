@@ -7,18 +7,37 @@ on:
       - edited
       - synchronize
       - reopened
+  workflow_dispatch:
 
 jobs:
   run-tests:
     name: Code standards & build
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 5
     steps:
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-      - run: bun install
-      - run: bun run build:all
-      - run: ./scripts/run-docker-tests.sh
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install bun dependencies
+        uses: oven-sh/setup-bun@v2
+      - run: bun install --frozen-lockfile
+      - name: Build code
+        run: bun run build:all
+      - name: Run tests
+        run: ./scripts/run-docker-tests.sh
+
+      - name: Google Auth
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+      - name: Upload reports to gcs
+        env:
+          GCP_PROJECT: ${{vars.GCP_PROJECT}}
+          REPORTER_BUCKET: ${{vars.REPORTER_BUCKET}}
+        run: |
+          ./scripts/upload-reports.sh
+
       - name: Archive test artifacts
         uses: actions/upload-artifact@v4
         with:

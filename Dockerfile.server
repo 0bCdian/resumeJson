@@ -1,4 +1,12 @@
-FROM build:1.0 AS base
+FROM oven/bun:alpine AS base
+
+WORKDIR /build
+
+COPY ./packages ./packages
+COPY ./bun.lockb .
+COPY ./package.json .
+
+RUN bun install --frozen-lockfile && bun run build:server
 
 FROM oven/bun:alpine AS server
 
@@ -11,10 +19,5 @@ RUN apk update && apk add poppler-utils --no-cache
 
 ENV PORT=8080
 ENV ENV="production"
-ENV OPEN_AI_API_KEY ${OPEN_AI_API_KEY}
-EXPOSE ${PORT}
 
 CMD [ "bun","run","start" ]
-
-
-

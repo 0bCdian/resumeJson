@@ -1,4 +1,12 @@
-FROM build:1.0 AS base
+FROM oven/bun:alpine AS base
+
+WORKDIR /build
+
+COPY ./packages ./packages
+COPY ./bun.lockb .
+COPY ./package.json .
+
+RUN bun install --frozen-lockfile && bun run build:frontend_server && bun run build:frontend
 
 FROM oven/bun:alpine AS frontend-server
 

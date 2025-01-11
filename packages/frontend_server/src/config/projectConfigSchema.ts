@@ -14,7 +14,8 @@ export const configSchema = z.object({
 		.int()
 		.positive()
 		.describe("How long of a resume a user can parse converted to tokens"),
-	fireStoreProjectId: z.string().describe("fireStoreProjectId").optional(),
+	projectID: z.string().describe("fireStoreProjectId").optional(),
+	dbID: z.string().describe("firestore id to connect to"),
 	port: z.number().describe("Port to listen in, default 3000"),
 	env: z
 		.union([z.literal("development"), z.literal("production")])

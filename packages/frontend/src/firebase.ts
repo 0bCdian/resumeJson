@@ -6,8 +6,9 @@ import {
 	connectAuthEmulator,
 } from "firebase/auth";
 
-const projectId = import.meta.env.DEV? "test" : import.meta.env.VITE_FIREBASE_PROJECT_ID
-
+const projectId = import.meta.env.DEV
+	? "test"
+	: import.meta.env.VITE_FIREBASE_PROJECT_ID;
 const firebaseConfig = {
 	apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
 	authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,

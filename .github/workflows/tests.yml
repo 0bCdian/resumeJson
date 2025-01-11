@@ -7,11 +7,14 @@ on:
       - edited
       - synchronize
       - reopened
+    branches:
+      - staging
   workflow_dispatch:
 
 jobs:
   run-tests:
     name: Code standards & build
+    environment: staging
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -26,12 +29,14 @@ jobs:
         run: ./scripts/run-docker-tests.sh
 
       - name: Google Auth
+        if: ${{ success() }}
         id: auth
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: Upload reports to gcs
+        if: ${{ success() }}
         env:
           GCP_PROJECT: ${{vars.GCP_PROJECT}}
           REPORTER_BUCKET: ${{vars.REPORTER_BUCKET}}
@@ -39,6 +44,7 @@ jobs:
           ./scripts/upload-reports.sh
 
       - name: Archive test artifacts
+        if: ${{ success() }}
         uses: actions/upload-artifact@v4
         with:
           name: reports

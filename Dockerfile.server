@@ -21,6 +21,3 @@ ENV PORT=8080
 ENV ENV="production"
 
 CMD [ "bun","run","start" ]
-
-
-

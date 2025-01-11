@@ -7,7 +7,7 @@ if [[ -z "$IMAGE" ]]; then
   exit 1
 fi
 
-gcloud config set project "$GCP_PROJECT"
+gcloud config set project "$GCLOUD_PROJECT"
 
 SERVICE_URL=$(
   gcloud run deploy "$SERVICE" \

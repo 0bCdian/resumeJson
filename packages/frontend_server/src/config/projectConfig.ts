@@ -6,11 +6,10 @@ import { BaseError } from "@json_cv_api/modules/src/Shared/Domain/Errors/BaseErr
 export const CONFIG = {
 	port: env.PORT,
 	env: env.ENV,
-  dbUrl:env.DB_URL,
-  projectID:env.GCLOUD_PROJECT,
+	dbID: env.DB_ID,
+	projectID: env.GCLOUD_PROJECT,
 	userDefaultApiCalls: 500,
 	userMaxCallsPerMinute: 20,
-	fireStoreProjectId: env.FIRESTORE_PROJECT_ID,
 	maxTokensPerRequest: 2000,
 } as configType;
 

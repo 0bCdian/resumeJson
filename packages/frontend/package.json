@@ -1,39 +1,39 @@
 {
-  "name": "@json_cv_api/frontend",
-  "version": "1.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "typecheck": "tsc --noEmit",
-    "dev": "vite --port=3002 --mode development",
-    "build": "vite build --mode production",
-    "build:test": "NODE_ENV=development VITE_TESTING=true vite build --mode development --outDir ./dist-test",
-    "serve": "vite preview",
-    "test": "echo test",
-    "start": "vite"
-  },
-  "devDependencies": {
-    "@tanstack/eslint-plugin-query": "^5.62.9",
-    "@tanstack/router-plugin": "^1.94.0",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^18.3.5",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
-    "daisyui": "^4.12.23",
-    "dotenv": "^16.4.7",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.17",
-    "vite": "^6.0.7"
-  },
-  "dependencies": {
-    "@tanstack/react-query": "^5.62.11",
-    "@tanstack/react-router": "^1.94.0",
-    "@tanstack/router-devtools": "^1.94.0",
-    "clsx": "^2.1.1",
-    "firebase": "^11.1.0",
-    "lucide-react": "^0.469.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "tailwind": "^4.0.0"
-  }
+	"name": "@json_cv_api/frontend",
+	"version": "1.0.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"typecheck": "tsc --noEmit",
+		"dev": "vite --port=3002 --mode development",
+		"build": "vite build --mode production",
+		"build:test": "NODE_ENV=development VITE_TESTING=true vite build --mode development --outDir ./dist-test",
+		"serve": "vite preview",
+		"test": "echo test",
+		"start": "vite"
+	},
+	"devDependencies": {
+		"@tanstack/eslint-plugin-query": "^5.62.9",
+		"@tanstack/router-plugin": "^1.94.0",
+		"@types/react": "^19.0.2",
+		"@types/react-dom": "^18.3.5",
+		"@vitejs/plugin-react": "^4.3.4",
+		"autoprefixer": "^10.4.20",
+		"daisyui": "^4.12.23",
+		"dotenv": "^16.4.7",
+		"postcss": "^8.4.49",
+		"tailwindcss": "^3.4.17",
+		"vite": "^6.0.7"
+	},
+	"dependencies": {
+		"@tanstack/react-query": "^5.62.11",
+		"@tanstack/react-router": "^1.94.0",
+		"@tanstack/router-devtools": "^1.94.0",
+		"clsx": "^2.1.1",
+		"firebase": "^11.1.0",
+		"lucide-react": "^0.469.0",
+		"react": "^18.3.1",
+		"react-dom": "^18.3.1",
+		"tailwind": "^4.0.0"
+	}
 }

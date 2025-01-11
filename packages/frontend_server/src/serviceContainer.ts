@@ -13,10 +13,12 @@ import { initializeFirestore } from "firebase-admin/firestore";
 
 const app = initializeApp({
 	credential: applicationDefault(),
-  databaseURL:CONFIG.dbUrl,
-  projectId:CONFIG.projectID
+	projectId: CONFIG.projectID,
 });
 const firebaseInstance = initializeFirestore(app);
+if (CONFIG.env === "production") {
+	firebaseInstance.settings({ databaseId: CONFIG.dbID });
+}
 const auth = getAuth();
 const apiKeyRepository = new FireStoreApiKeyRepository(firebaseInstance);
 const userRepository = new FireStoreUserRepository(firebaseInstance);

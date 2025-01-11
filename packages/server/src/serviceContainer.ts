@@ -17,13 +17,17 @@ import { UserUpdateQuota } from "@json_cv_api/modules/src/User/Application/UserU
 import { CONFIG } from "./config/projectConfig";
 import { initializeFirestore } from "firebase-admin/firestore";
 
-const app =initializeApp({
+const app = initializeApp({
 	credential: applicationDefault(),
-	projectId:CONFIG.projectID,
-  databaseURL:CONFIG.dbUrl
-  
+	projectId: CONFIG.projectID,
 });
-const firebaseInstance = initializeFirestore(app,{preferRest:true});
+const firebaseInstance = initializeFirestore(app);
+
+if (CONFIG.env === "production") {
+	firebaseInstance.settings({
+		databaseId: CONFIG.dbID,
+	});
+}
 const apiKeyRepository = new FireStoreApiKeyRepository(firebaseInstance);
 const userRepository = new FireStoreUserRepository(firebaseInstance);
 const tokenizer = new TokenizerService();

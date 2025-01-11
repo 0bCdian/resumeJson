@@ -1,15 +1,13 @@
 const {
 	OPEN_AI_API_KEY,
-	FIRESTORE_PROJECT_ID,
 	ENV = "development" as const,
-GCLOUD_PROJECT,
-DB_URL="localhost:8080"
+	GCLOUD_PROJECT,
+	DB_ID = "(default)",
 } = process.env;
 
 export const env = {
 	ENV,
-  GCLOUD_PROJECT,
-  DB_URL,
+	GCLOUD_PROJECT,
+	DB_ID,
 	OPEN_AI_API_KEY,
-	FIRESTORE_PROJECT_ID,
 };

@@ -7,14 +7,14 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["*.js", "*.gen.*"]
+		"ignore": ["*.js", "*.gen.*", "*.css"]
 	},
 	"formatter": {
 		"enabled": true,
 		"indentStyle": "tab"
 	},
 	"organizeImports": {
-		"enabled": true
+		"enabled": false
 	},
 	"linter": {
 		"enabled": true,

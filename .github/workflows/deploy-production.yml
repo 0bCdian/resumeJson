@@ -10,4 +10,6 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       environment: "production"
+      base_ref: ${{ github.event.commits[0].id }}
+      previous_ref: ${{ github.event.commits[-1].id }}
     secrets: inherit

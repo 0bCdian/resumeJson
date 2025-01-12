@@ -2,9 +2,11 @@
 set -euo pipefail
 
 DIR=$1
-CURRENT_REF=$(git rev-parse HEAD)
-PREVIOUS_REF=$(git rev-list -n 1 HEAD^1)
-
+CURRENT_REF=$2
+PREVIOUS_REF=$3
+echo "$DIR"
+echo "$CURRENT_REF"
+echo "$PREVIOUS_REF"
 if [[ -z "$DIR" ]]; then
   echo "Empty dir"
   exit 1

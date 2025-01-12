@@ -1,14 +1,16 @@
-name: Staging deploy
+name: Production deploy
 on:
   push:
     branches:
-      - staging
+      - main
+    tags:
+      - "*"
 jobs:
-  deploy-staging:
-    name: Deploy to Staging
+  deploy-main:
+    name: Deploy to Main
     runs-on: ubuntu-latest
     steps:
       - name: Call deploy
         uses: 0bCdian/resumeJson/.github/workflows/deploy.yml
         with:
-          environment: "staging"
+          environment: "production"

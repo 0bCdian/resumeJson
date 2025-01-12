@@ -9,10 +9,25 @@ on:
       - reopened
     branches:
       - staging
+      - main
   workflow_dispatch:
 
 jobs:
+  biome:
+    name: runner / Biome
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: mongolyy/reviewdog-action-biome@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          reporter: github-pr-review
+          fail_level: warning
   run-tests:
+    needs: biome
     name: Code standards & build
     environment: staging
     runs-on: ubuntu-latest
@@ -40,6 +55,7 @@ jobs:
         env:
           GCP_PROJECT: ${{vars.GCP_PROJECT}}
           REPORTER_BUCKET: ${{vars.REPORTER_BUCKET}}
+          REPORTER_URL: ${{vars.REPORTER_URL}}
         run: |
           ./scripts/upload-reports.sh
 

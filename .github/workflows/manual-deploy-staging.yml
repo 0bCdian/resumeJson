@@ -39,7 +39,7 @@ jobs:
       - name: Publish
         if: ${{ success() }}
         run: |
-          ./scripts/publish ${{matrix.package}}
+          ./scripts/publish.sh ${{matrix.package}}
       - name: Deploy
         if: ${{ success() }}
         run: |

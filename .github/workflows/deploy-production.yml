@@ -1,11 +1,13 @@
-name: Staging deploy
+name: Production deploy
 on:
   push:
     branches:
-      - staging
+      - main
+    tags:
+      - "*"
 jobs:
-  deploy-staging:
-    name: Deploy to Staging
+  deploy-main:
+    name: Deploy to Main
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -13,5 +15,4 @@ jobs:
       - name: Call deploy
         uses: ./.github/workflows/deploy/
         with:
-          environment: "staging"
-        secrets: inherit
+          environment: "production"

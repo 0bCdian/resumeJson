@@ -2,25 +2,22 @@
 set -euo pipefail
 
 DIR=$1
-REF=$2
+CURRENT_REF=$(git rev-parse HEAD)
+PREVIOUS_REF=$(git rev-list -n 1 HEAD^1)
 
 if [[ -z "$DIR" ]]; then
   echo "Empty dir"
   exit 1
 fi
 
-if [[ -z "$REF" ]]; then
-  echo "Empty ref"
-  exit 1
-fi
-
 if [[ "$DIR" == "frontend" ]]; then
-  DIR="packages/frontend packages/frontend_server"
+  DIR="$PWD/packages/frontend $PWD/packages/frontend_server"
+elif [[ "$DIR" == "test-reporter" ]]; then
+  DIR="$PWD/Dockerfile.reporter $PWD/nginx.conf"
 else
-  DIR="packages/$DIR"
+  DIR="$PWD/packages/$DIR"
 fi
-
-if git diff --quiet HEAD "$REF" -- "$DIR"; then
+if git diff --quiet "$CURRENT_REF" "$PREVIOUS_REF" -- "$DIR"; then
   echo "CHANGED=false" >>"$GITHUB_ENV"
 else
   echo "CHANGED=true" >>"$GITHUB_ENV"

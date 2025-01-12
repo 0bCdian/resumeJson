@@ -11,8 +11,11 @@ gcloud config set project "$GCLOUD_PROJECT"
 
 SERVICE_URL=$(
   gcloud run deploy "$SERVICE" \
+    --execution-environment gen2 \
+    --add-volume=name=reports,type=cloud-storage,bucket="$REPORTER_BUCKET" \
+    --add-volume-mount=reports,mount-path="/usr/share/nginx/reports" \
     --image "$IMAGE" \
-    --platform managed \
+    --service-account "$REPORTER_SERVICE_ACCOUNT" \
     --allow-unauthenticated \
     --memory 512M \
     --format='value(status.url)'

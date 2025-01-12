@@ -16,6 +16,7 @@ SERVICE_URL=$(
     --image "$IMAGE" \
     --set-env-vars "$VARS" \
     --platform managed \
+    --service-account "$FRONTEND_SERVICE_ACCOUNT" \
     --allow-unauthenticated \
     --memory 512M \
     --format='value(status.url)'

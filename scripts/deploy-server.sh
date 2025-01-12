@@ -15,6 +15,7 @@ SERVICE_URL=$(
     --image "$IMAGE" \
     --set-env-vars "$VARS" \
     --update-secrets=OPEN_AI_API_KEY=OPEN_AI_API_KEY:latest \
+    --service-account "$SERVER_SERVICE_ACCOUNT" \
     --platform managed \
     --allow-unauthenticated \
     --memory 512M \

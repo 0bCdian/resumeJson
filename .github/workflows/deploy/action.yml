@@ -5,7 +5,6 @@ on:
       environment:
         required: true
         type: string
-
 env:
   VITE_FIREBASE_API_KEY: ${{secrets.VITE_FIREBASE_API_KEY}}
   VITE_FIREBASE_AUTH_DOMAIN: ${{secrets.VITE_FIREBASE_AUTH_DOMAIN}}
@@ -21,7 +20,6 @@ env:
   REPORTER_SERVICE_ACCOUNT: ${{vars.REPORTER_SERVICE_ACCOUNT}}
   FRONTEND_SERVICE_ACCOUNT: ${{vars.FRONTEND_SERVICE_ACCOUNT}}
   #LAMBDA_SERVICE_ACCOUNT: ${{vars.LAMBDA_SERVICE_ACCOUNT}}
-
 jobs:
   staging-deploy:
     runs-on: ubuntu-latest
@@ -41,7 +39,7 @@ jobs:
         run: |
           ./scripts/detect-changes.sh ${{ matrix.package }} ${{ github.event.base_ref }} ${{ github.event.before }}
       - name: Build
-        if: ${{ success() }} && env.CHANGED == 'true'
+        if: ${{success() && env.CHANGED == 'true' }}
         run: |
           ./scripts/build.sh ${{ matrix.package }}
       - name: Publish

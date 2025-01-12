@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Call deploy
-        uses: 0bCdian/resumeJson/.github/workflows/deploy.yml
+        uses: ./.github/workflows/deploy.yml
         with:
           environment: "staging"

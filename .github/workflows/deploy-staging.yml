@@ -41,7 +41,7 @@ jobs:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
       - name: Check changes
         run: |
-          ./scripts/detect-changes.sh ${{matrix.package}}
+          ./scripts/detect-changes.sh ${{matrix.package}} HEAD~1
       - name: Build
         if: env.CHANGED == 'true'
         run: |

@@ -8,6 +8,8 @@ jobs:
     name: Deploy to Staging
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
       - name: Call deploy
         uses: ./.github/workflows/deploy.yml
         with:

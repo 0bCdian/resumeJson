@@ -23,9 +23,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: mongolyy/reviewdog-action-biome@v1
         with:
-          github_token: ${{ secrets.github_token }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
-          fail_on_error: true
+          fail_level: warning
   run-tests:
     needs: biome
     name: Code standards & build

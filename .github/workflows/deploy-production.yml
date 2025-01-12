@@ -13,6 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Call deploy
-        uses: ./.github/workflows/deploy.yml
+        uses: ./.github/workflows/deploy/
         with:
           environment: "production"

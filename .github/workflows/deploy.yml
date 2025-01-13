@@ -46,11 +46,8 @@ jobs:
         # - name: Check changes
         #   run: |
         #     ./scripts/detect-changes.sh ${{ matrix.package }} ${{inputs.base_ref}} ${{inputs.previous_ref}}
-      - name: Dummy changes
-        run: |
-          'echo this are the refs: ${{inputs.base_ref}} ${{inputs.previous_ref}}'
       - name: Build
-        if: ${{success() && env.CHANGED == 'true' }}
+        if: ${{success()}}
         run: |
           ./scripts/build.sh ${{ matrix.package }}
       - name: Publish

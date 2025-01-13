@@ -10,7 +10,6 @@ import { applicationDefault, initializeApp } from "firebase-admin/app";
 import { CONFIG } from "./config/projectConfig";
 import { getAuth } from "firebase-admin/auth";
 import { initializeFirestore } from "firebase-admin/firestore";
-
 const app = initializeApp({
 	credential: applicationDefault(),
 	projectId: CONFIG.projectID,

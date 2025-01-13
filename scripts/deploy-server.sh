@@ -19,7 +19,6 @@ SERVICE_URL=$(
     --service-account "$SERVER_SERVICE_ACCOUNT" \
     --platform managed \
     --allow-unauthenticated \
-    --memory 512M \
     --format='value(status.url)'
 )
 

@@ -19,7 +19,6 @@ SERVICE_URL=$(
     --platform managed \
     --service-account "$FRONTEND_SERVICE_ACCOUNT" \
     --allow-unauthenticated \
-    --memory 512M \
     --format='value(status.url)'
 )
 

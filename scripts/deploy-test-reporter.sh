@@ -18,7 +18,6 @@ SERVICE_URL=$(
     --image "$IMAGE" \
     --service-account "$REPORTER_SERVICE_ACCOUNT" \
     --allow-unauthenticated \
-    --memory 512M \
     --format='value(status.url)'
 )
 

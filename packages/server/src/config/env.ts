@@ -1,6 +1,6 @@
 const {
 	OPEN_AI_API_KEY,
-	ENV = "development" as const,
+	ENV = "production" as const,
 	GCLOUD_PROJECT,
 	DB_ID = "(default)",
 } = process.env;

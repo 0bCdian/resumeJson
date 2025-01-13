@@ -9,24 +9,25 @@ import { UserGet } from "@json_cv_api/modules/src/User/Application/UserGet";
 import { applicationDefault, initializeApp } from "firebase-admin/app";
 import { CONFIG } from "./config/projectConfig";
 import { getAuth } from "firebase-admin/auth";
-import { initializeFirestore } from "firebase-admin/firestore";
+import { type Firestore, initializeFirestore } from "firebase-admin/firestore";
 const app = initializeApp({
 	credential: applicationDefault(),
 	projectId: CONFIG.projectID,
 });
-console.log(app.options.credential);
-console.log(app.options.projectId);
-console.log(app.options.storageBucket);
-console.log(app.options.serviceAccountId);
-console.log(app.options.databaseURL);
-const firebaseInstance = initializeFirestore(app);
+// We have to do this abomination because there's a bug in bun's grpc
+// implementation https://github.com/firebase/firebase-admin-node/issues/2744
+let fireStoreInstance: Firestore;
 if (CONFIG.env === "production") {
-	firebaseInstance.settings({ databaseId: CONFIG.dbID });
+	fireStoreInstance = initializeFirestore(app, { preferRest: true });
+	fireStoreInstance.settings({
+		databaseId: CONFIG.dbID,
+	});
+} else {
+	fireStoreInstance = initializeFirestore(app);
 }
-console.log(firebaseInstance.databaseId);
 const auth = getAuth(app);
-const apiKeyRepository = new FireStoreApiKeyRepository(firebaseInstance);
-const userRepository = new FireStoreUserRepository(firebaseInstance);
+const apiKeyRepository = new FireStoreApiKeyRepository(fireStoreInstance);
+const userRepository = new FireStoreUserRepository(fireStoreInstance);
 
 export const ServiceContainer = {
 	api: {

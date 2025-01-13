@@ -12,7 +12,7 @@
 	},
 	"scripts": {
 		"test": "echo test",
-		"dev": "PORT=3001 bun run --hot ./src/index.ts",
+		"dev": "PORT=8080 bun run --hot ./src/index.ts",
 		"start": "bun run ./dist/index.js",
 		"build": "bun build ./src/index.ts --target=bun --outdir=./dist",
 		"build:test": "bun build ./src/index.ts --target=bun --outdir=./dist-test"

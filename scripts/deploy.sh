@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -euo
-
+gcloud config set run/region "${{ env.GCLOUD_REGION }}"
 if [[ $1 == "frontend" ]]; then
   ./scripts/deploy-frontend.sh
 elif [[ $1 == "server" ]]; then

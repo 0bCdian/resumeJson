@@ -6,6 +6,10 @@ on:
         type: string
         description: "Which environment will this be deployed in"
         required: true
+      packages:
+        type: string
+        description: "Which packages will be deployed, this is an array of one or more elements ['frontend'] for example"
+        required: true
 
 env:
   VITE_FIREBASE_API_KEY: ${{secrets.VITE_FIREBASE_API_KEY}}
@@ -31,7 +35,7 @@ jobs:
     environment: ${{inputs.environment}}
     strategy:
       matrix:
-        package: ["server", "frontend", "test-reporter"]
+        package: ${{inputs.packages}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

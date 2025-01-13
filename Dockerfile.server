@@ -8,16 +8,17 @@ COPY ./package.json .
 
 RUN bun install --frozen-lockfile && bun run build:server
 
-FROM oven/bun:alpine AS server
-
-WORKDIR /app
-
-COPY --from=base /build/packages/server/dist ./dist
-COPY --from=base /build/packages/server/package.json .
-
 RUN apk update && apk add poppler-utils --no-cache
 RUN apk add --upgrade --no-cache ca-certificates && update-ca-certificates
+CMD [ "bun","run","dev" ]
+
 ENV PORT=8080
 ENV ENV="production"
+# FROM oven/bun:alpine AS server
+#
+# WORKDIR /app
+#
+# COPY --from=base /build/packages/server/dist ./dist
+# COPY --from=base /build/packages/server/package.json .
+#
 
-CMD [ "bun","run","start" ]

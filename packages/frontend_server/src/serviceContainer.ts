@@ -14,13 +14,17 @@ const app = initializeApp({
 	credential: applicationDefault(),
 	projectId: CONFIG.projectID,
 });
-console.log(CONFIG);
-console.log(process.env);
+console.log(app.options.credential);
+console.log(app.options.projectId);
+console.log(app.options.storageBucket);
+console.log(app.options.serviceAccountId);
+console.log(app.options.databaseURL);
 const firebaseInstance = initializeFirestore(app);
 if (CONFIG.env === "production") {
 	firebaseInstance.settings({ databaseId: CONFIG.dbID });
 }
-const auth = getAuth();
+console.log(firebaseInstance.databaseId);
+const auth = getAuth(app);
 const apiKeyRepository = new FireStoreApiKeyRepository(firebaseInstance);
 const userRepository = new FireStoreUserRepository(firebaseInstance);
 

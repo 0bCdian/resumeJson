@@ -21,15 +21,17 @@ const app = initializeApp({
 	credential: applicationDefault(),
 	projectId: CONFIG.projectID,
 });
-console.log(app);
-console.log(CONFIG);
+console.log(app.options.projectId);
+console.log(app.options.storageBucket);
+console.log(app.options.serviceAccountId);
+console.log(app.options.databaseURL);
 const firebaseInstance = initializeFirestore(app);
-
 if (CONFIG.env === "production") {
 	firebaseInstance.settings({
 		databaseId: CONFIG.dbID,
 	});
 }
+console.log(firebaseInstance.databaseId);
 const apiKeyRepository = new FireStoreApiKeyRepository(firebaseInstance);
 const userRepository = new FireStoreUserRepository(firebaseInstance);
 const tokenizer = new TokenizerService();

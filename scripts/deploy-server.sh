@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -e
+set -euo
+
 IMAGE="$(cat "$PWD/server-docker-image.txt")"
-SERVICE="resumeJsonServer-$ENV"
+SERVICE="resumejson-server-$ENV"
 VARS="GCLOUD_PROJECT=$GCLOUD_PROJECT,DB_ID=$DB_ID"
 if [[ -z "$IMAGE" ]]; then
   echo "no image found"

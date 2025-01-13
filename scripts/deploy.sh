@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -euo
+
 if [[ $1 == "frontend" ]]; then
   ./scripts/deploy-frontend.sh
 elif [[ $1 == "server" ]]; then

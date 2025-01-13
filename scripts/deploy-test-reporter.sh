@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -e
+set -euo
+
 IMAGE="$(cat "$PWD/test-reporter-docker-image.txt")"
-SERVICE="resumeJsonErrorReporter-$ENV"
+SERVICE="resumejson-test-reporter-$ENV"
 if [[ -z "$IMAGE" ]]; then
   echo "no image found"
   exit 1

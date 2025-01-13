@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
-set -e
+set -euo
+
 IMAGE="$(cat "$PWD/frontend-docker-image.txt")"
-SERVICE="resumeJsonFrontend-$ENV"
+SERVICE="resumejson-frontend-$ENV"
 VARS="GCLOUD_PROJECT=$GCLOUD_PROJECT,DB_ID=$DB_ID"
 
 if [[ -z "$IMAGE" ]]; then

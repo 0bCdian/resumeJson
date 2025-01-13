@@ -8,9 +8,6 @@ COPY ./package.json .
 
 RUN bun install --frozen-lockfile && bun run build:server
 
-
-WORKDIR /packages/server/
-
 #COPY --from=base /build/packages/server/dist ./dist
 #COPY --from=base /build/packages/server/package.json .
 
@@ -19,4 +16,4 @@ RUN apk add --upgrade --no-cache ca-certificates && update-ca-certificates
 ENV PORT=8080
 ENV ENV="production"
 
-CMD [ "bun","run","dev" ]
+CMD [ "bun","run","server:dev" ]

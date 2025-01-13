@@ -14,6 +14,8 @@ const app = initializeApp({
 	credential: applicationDefault(),
 	projectId: CONFIG.projectID,
 });
+console.log(CONFIG);
+console.log(app);
 const firebaseInstance = initializeFirestore(app);
 if (CONFIG.env === "production") {
 	firebaseInstance.settings({ databaseId: CONFIG.dbID });

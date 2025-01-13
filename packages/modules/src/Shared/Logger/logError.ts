@@ -1,6 +1,6 @@
-import pino from "pino";
-const logger = pino();
-
+// import pino from "pino";
+// const logger = pino();
+const logger = console;
 export function logError(error: unknown): void {
 	if (error instanceof Error) {
 		logger.error(error.message);

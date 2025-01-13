@@ -32,6 +32,9 @@ jobs:
     environment: staging
     runs-on: ubuntu-latest
     timeout-minutes: 5
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -59,6 +62,12 @@ jobs:
         run: |
           ./scripts/upload-reports.sh
 
+      - name: Comment PR
+        if: ${{ success() }}
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            Check out the test results here: ${{env.REPORT_URL}} :wave:
       - name: Archive test artifacts
         if: ${{ success() }}
         uses: actions/upload-artifact@v4

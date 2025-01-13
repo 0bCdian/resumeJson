@@ -1,6 +1,12 @@
 name: Manual deploy
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        type: string
+        description: "Which environment will this be deployed in"
+        required: true
+
 env:
   VITE_FIREBASE_API_KEY: ${{secrets.VITE_FIREBASE_API_KEY}}
   VITE_FIREBASE_AUTH_DOMAIN: ${{secrets.VITE_FIREBASE_AUTH_DOMAIN}}
@@ -11,6 +17,7 @@ env:
   REGISTRY_NAME: ${{vars.REGISTRY_NAME}}
   GCLOUD_PROJECT: ${{vars.GCLOUD_PROJECT}}
   DB_ID: ${{vars.DB_ID}}
+  ENV: ${{inputs.environment}}
   REPORTER_BUCKET: ${{vars.REPORTER_BUCKET}}
   SERVER_SERVICE_ACCOUNT: ${{vars.SERVER_SERVICE_ACCOUNT}}
   REPORTER_SERVICE_ACCOUNT: ${{vars.REPORTER_SERVICE_ACCOUNT}}
@@ -20,13 +27,13 @@ env:
 jobs:
   staging-deploy:
     runs-on: ubuntu-latest
-    environment: staging
+    environment: ${{inputs.environment}}
     strategy:
       matrix:
         package: ["server", "frontend", "test-reporter"]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Google Auth
         id: auth
         uses: google-github-actions/auth@v2

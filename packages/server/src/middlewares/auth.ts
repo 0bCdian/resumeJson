@@ -3,6 +3,7 @@ import { ServiceContainer } from "../serviceContainer";
 import { ApiKeyValidationError } from "@json_cv_api/modules/src/Auth/Domain/Errors/ApiKeyValidationError";
 import type { User } from "@json_cv_api/modules/src/User/Domain/Schemas/UserSchema";
 import { UserQuotaExceededError } from "@json_cv_api/modules/src/User/Domain/Errors/UserQuotaExceededError";
+import { logError } from "@json_cv_api/modules/src/Shared/Logger/logError";
 export type ContextUser = {
 	Variables: {
 		user: User;
@@ -44,6 +45,7 @@ export const auth = createMiddleware<ContextUser>(async (c, next) => {
 		c.set("user", user);
 		await next();
 	} catch (error) {
+		logError(error);
 		if (error instanceof UserQuotaExceededError) {
 			return c.json({ error: "Monthly quota exceeded", status: "failed" }, 402);
 		}

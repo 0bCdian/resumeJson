@@ -5,7 +5,7 @@ import { cors } from "hono/cors";
 import apiKeysRouter from "./routes/apiKeys";
 import userRouter from "./routes/user";
 import { CONFIG } from "./config/projectConfig";
-import { logError } from "@modules/Shared/Logger/logError";
+import { logError } from "@json_cv_api/modules/src/Shared/Logger/logError";
 const app = new Hono();
 
 app.use(async (c, next) => {

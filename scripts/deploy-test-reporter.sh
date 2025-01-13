@@ -13,7 +13,7 @@ SERVICE_URL=$(
   gcloud run deploy "$SERVICE" \
     --execution-environment gen2 \
     --add-volume=name=reports,type=cloud-storage,bucket="$REPORTER_BUCKET" \
-    --add-volume-mount=name=reports,mount-path="/usr/share/nginx/reports" \
+    --add-volume-mount=volume=reports,mount-path="/usr/share/nginx/reports" \
     --image "$IMAGE" \
     --service-account "$REPORTER_SERVICE_ACCOUNT" \
     --allow-unauthenticated \

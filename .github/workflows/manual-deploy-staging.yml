@@ -36,6 +36,9 @@ jobs:
         if: ${{ success() }}
         run: |
           ./scripts/build.sh ${{matrix.package}}
+      - name: Auth docker
+        run: |
+          gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin "$REGISTRY_NAME"
       - name: Publish
         if: ${{ success() }}
         run: |

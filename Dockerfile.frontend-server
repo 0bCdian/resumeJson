@@ -7,22 +7,20 @@ COPY ./bun.lockb .
 COPY ./package.json .
 
 RUN bun install --frozen-lockfile && bun run build:frontend_server && bun run build:frontend
+RUN apk add --upgrade --no-cache ca-certificates && update-ca-certificates
 
-COPY ./packages/frontend/dist/ ./packages/frontend_server/static/
-ENV ENV="production"
-ENV PORT=8080
-WORKDIR /build/packages/frontend_server/
-EXPOSE ${PORT}
+WORKDIR /packages/frontend_server
 
-CMD [ "bun","run","dev" ]
-# FROM oven/bun:alpine AS frontend-server
-#
-# WORKDIR /app
-# RUN apk add --upgrade --no-cache ca-certificates && update-ca-certificates
 # COPY --from=base /build/packages/frontend_server/package.json .
 # COPY --from=base /build/packages/frontend_server/dist/ ./dist
 # COPY --from=base /build/packages/frontend/dist/ ./static
-#
-#
+
+ENV ENV="production"
+ENV PORT=8080
+
+EXPOSE ${PORT}
+
+CMD [ "bun","run","dev" ]
+
 
 

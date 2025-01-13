@@ -3,10 +3,6 @@ on:
   push:
     branches:
       - staging
-    tags:
-      - "*"
-    paths:
-      - "packages/**"
 jobs:
   deploy-staging:
     uses: ./.github/workflows/deploy.yml

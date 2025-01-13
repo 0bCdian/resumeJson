@@ -9,8 +9,7 @@ COPY ./package.json .
 RUN bun install --frozen-lockfile && bun run build:frontend_server && bun run build:frontend
 RUN apk add --upgrade --no-cache ca-certificates && update-ca-certificates
 
-WORKDIR /packages/frontend_server
-
+COPY ./packages/frontend/dist/ ./packages/frontend_server/static/
 # COPY --from=base /build/packages/frontend_server/package.json .
 # COPY --from=base /build/packages/frontend_server/dist/ ./dist
 # COPY --from=base /build/packages/frontend/dist/ ./static
@@ -20,7 +19,7 @@ ENV PORT=8080
 
 EXPOSE ${PORT}
 
-CMD [ "bun","run","dev" ]
+CMD [ "bun","run","frontend_server:dev" ]
 
 
 

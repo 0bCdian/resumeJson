@@ -16,7 +16,7 @@ COPY --from=base /build/packages/server/dist ./dist
 COPY --from=base /build/packages/server/package.json .
 
 RUN apk update && apk add poppler-utils --no-cache
-
+RUN apk add --upgrade --no-cache ca-certificates && update-ca-certificates
 ENV PORT=8080
 ENV ENV="production"
 

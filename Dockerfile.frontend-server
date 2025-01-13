@@ -11,7 +11,7 @@ RUN bun install --frozen-lockfile && bun run build:frontend_server && bun run bu
 FROM oven/bun:alpine AS frontend-server
 
 WORKDIR /app
-
+RUN apk add --upgrade --no-cache ca-certificates && update-ca-certificates
 COPY --from=base /build/packages/frontend_server/package.json .
 COPY --from=base /build/packages/frontend_server/dist/ ./dist
 COPY --from=base /build/packages/frontend/dist/ ./static

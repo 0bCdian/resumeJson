@@ -22,6 +22,7 @@ export class FireStoreApiKeyRepository implements ApiKeyRepository {
 				.doc(apiKey.id);
 			await docRef.set(apiKey, { merge: true });
 		} catch (error) {
+			console.error(error);
 			if (error instanceof ApiKeyStoringError) {
 				throw error;
 			}
@@ -47,6 +48,7 @@ export class FireStoreApiKeyRepository implements ApiKeyRepository {
 			if (results.length < 1) throw new ApiKeyNotFoundError();
 			return results[0];
 		} catch (error) {
+			console.error(error);
 			if (error instanceof ApiKeyNotFoundError) {
 				throw error;
 			}
@@ -71,6 +73,7 @@ export class FireStoreApiKeyRepository implements ApiKeyRepository {
 
 			return snapshot.data() as ApiKey;
 		} catch (error) {
+			console.error(error);
 			if (error instanceof ApiKeyNotFoundError) {
 				throw error;
 			}
@@ -95,6 +98,7 @@ export class FireStoreApiKeyRepository implements ApiKeyRepository {
 			}
 			return apiKeys;
 		} catch (error) {
+			console.error(error);
 			if (error instanceof ApiKeyNotFoundError) {
 				throw error;
 			}
@@ -115,6 +119,7 @@ export class FireStoreApiKeyRepository implements ApiKeyRepository {
 			if (!docRef.exists) throw new ApiKeyDeleteError();
 			await docRef.ref.delete();
 		} catch (error) {
+			console.error(error);
 			if (error instanceof ApiKeyDeleteError) {
 				throw error;
 			}

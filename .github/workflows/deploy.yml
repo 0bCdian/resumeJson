@@ -25,6 +25,7 @@ jobs:
       VITE_FIREBASE_APP_ID: ${{secrets.VITE_FIREBASE_APP_ID}}
       REGISTRY_NAME: ${{vars.REGISTRY_NAME}}
       GCLOUD_PROJECT: ${{vars.GCLOUD_PROJECT}}
+      GCLOUD_REGION: ${{vars.GCLOUD_REGION}}
       DB_ID: ${{vars.DB_ID}}
       REPORTER_BUCKET: ${{vars.REPORTER_BUCKET}}
       SERVER_SERVICE_ACCOUNT: ${{vars.SERVER_SERVICE_ACCOUNT}}
@@ -42,9 +43,12 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
-      - name: Check changes
+        # - name: Check changes
+        #   run: |
+        #     ./scripts/detect-changes.sh ${{ matrix.package }} ${{inputs.base_ref}} ${{inputs.previous_ref}}
+      - name: Dummy changes
         run: |
-          ./scripts/detect-changes.sh ${{ matrix.package }} ${{inputs.base_ref}} ${{inputs.previous_ref}}
+          'echo this are the refs: ${{inputs.base_ref}} ${{inputs.previous_ref}}'
       - name: Build
         if: ${{success() && env.CHANGED == 'true' }}
         run: |

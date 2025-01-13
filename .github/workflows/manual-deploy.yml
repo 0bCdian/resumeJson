@@ -16,6 +16,7 @@ env:
   VITE_FIREBASE_APP_ID: ${{secrets.VITE_FIREBASE_APP_ID}}
   REGISTRY_NAME: ${{vars.REGISTRY_NAME}}
   GCLOUD_PROJECT: ${{vars.GCLOUD_PROJECT}}
+  GCLOUD_REGION: ${{vars.GCLOUD_REGION}}
   DB_ID: ${{vars.DB_ID}}
   ENV: ${{inputs.environment}}
   REPORTER_BUCKET: ${{vars.REPORTER_BUCKET}}

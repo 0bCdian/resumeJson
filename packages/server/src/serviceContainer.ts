@@ -21,6 +21,7 @@ const app = initializeApp({
 	credential: applicationDefault(),
 	projectId: CONFIG.projectID,
 });
+console.log(app.options.credential);
 console.log(app.options.projectId);
 console.log(app.options.storageBucket);
 console.log(app.options.serviceAccountId);

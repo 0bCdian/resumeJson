@@ -8,9 +8,10 @@ COPY ./package.json .
 
 RUN bun install --frozen-lockfile && bun run build:frontend_server && bun run build:frontend
 
+COPY ./packages/frontend/dist/ ./packages/frontend_server/static/
 ENV ENV="production"
 ENV PORT=8080
-
+WORKDIR /build/packages/frontend_server/
 EXPOSE ${PORT}
 
 CMD [ "bun","run","dev" ]

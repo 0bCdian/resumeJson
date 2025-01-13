@@ -6,6 +6,10 @@ on:
         type: string
         description: "Which environment will this be deployed in"
         required: true
+      packages:
+        type: string
+        description: "Which packages will be deployed, this is an array of one or more elements ['frontend'] for example"
+        required: true
 
 env:
   VITE_FIREBASE_API_KEY: ${{secrets.VITE_FIREBASE_API_KEY}}
@@ -16,6 +20,7 @@ env:
   VITE_FIREBASE_APP_ID: ${{secrets.VITE_FIREBASE_APP_ID}}
   REGISTRY_NAME: ${{vars.REGISTRY_NAME}}
   GCLOUD_PROJECT: ${{vars.GCLOUD_PROJECT}}
+  GCLOUD_REGION: ${{vars.GCLOUD_REGION}}
   DB_ID: ${{vars.DB_ID}}
   ENV: ${{inputs.environment}}
   REPORTER_BUCKET: ${{vars.REPORTER_BUCKET}}
@@ -30,7 +35,7 @@ jobs:
     environment: ${{inputs.environment}}
     strategy:
       matrix:
-        package: ["server", "frontend", "test-reporter"]
+        package: ${{inputs.packages}}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

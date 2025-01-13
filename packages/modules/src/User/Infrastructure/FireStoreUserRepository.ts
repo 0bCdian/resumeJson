@@ -21,6 +21,7 @@ export class FireStoreUserRepository implements UserRepository {
 			if (!docRef.exists) throw new UserNotFoundError();
 			return docRef.data() as User;
 		} catch (error) {
+			console.error(error);
 			if (error instanceof UserNotFoundError) {
 				throw error;
 			}
@@ -37,6 +38,7 @@ export class FireStoreUserRepository implements UserRepository {
 				.doc(user.id);
 			await docRef.set(user, { merge: true });
 		} catch (error) {
+			console.error(error);
 			if (error instanceof Error) {
 				throw new UserStoreError({ error, context: user });
 			}
@@ -54,6 +56,7 @@ export class FireStoreUserRepository implements UserRepository {
 				doc.ref.delete();
 			}
 		} catch (error) {
+			console.error(error);
 			if (error instanceof UserDeleteError) {
 				throw error;
 			}
@@ -69,6 +72,7 @@ export class FireStoreUserRepository implements UserRepository {
 				.doc(newUserData.id);
 			await docRef.set(newUserData, { merge: true });
 		} catch (error) {
+			console.error(error);
 			if (error instanceof Error) {
 				throw new UserStoreError({ error, context: newUserData });
 			}

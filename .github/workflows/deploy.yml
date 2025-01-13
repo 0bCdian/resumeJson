@@ -25,7 +25,9 @@ jobs:
       VITE_FIREBASE_APP_ID: ${{secrets.VITE_FIREBASE_APP_ID}}
       REGISTRY_NAME: ${{vars.REGISTRY_NAME}}
       GCLOUD_PROJECT: ${{vars.GCLOUD_PROJECT}}
+      GCLOUD_REGION: ${{vars.GCLOUD_REGION}}
       DB_ID: ${{vars.DB_ID}}
+      ENV: ${{inputs.environment}}
       REPORTER_BUCKET: ${{vars.REPORTER_BUCKET}}
       SERVER_SERVICE_ACCOUNT: ${{vars.SERVER_SERVICE_ACCOUNT}}
       REPORTER_SERVICE_ACCOUNT: ${{vars.REPORTER_SERVICE_ACCOUNT}}
@@ -42,13 +44,17 @@ jobs:
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GOOGLE_CREDENTIALS }}
-      - name: Check changes
-        run: |
-          ./scripts/detect-changes.sh ${{ matrix.package }} ${{inputs.base_ref}} ${{inputs.previous_ref}}
+        # - name: Check changes
+        #   run: |
+        #     ./scripts/detect-changes.sh ${{ matrix.package }} ${{inputs.base_ref}} ${{inputs.previous_ref}}
       - name: Build
-        if: ${{success() && env.CHANGED == 'true' }}
+        if: ${{success()}}
         run: |
           ./scripts/build.sh ${{ matrix.package }}
+      - name: Auth docker
+        if: ${{success()}}
+        run: |
+          gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin "$REGISTRY_NAME"
       - name: Publish
         if: ${{ success() }}
         run: |

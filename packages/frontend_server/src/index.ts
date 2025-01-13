@@ -5,12 +5,14 @@ import { cors } from "hono/cors";
 import apiKeysRouter from "./routes/apiKeys";
 import userRouter from "./routes/user";
 import { CONFIG } from "./config/projectConfig";
+import { logError } from "@json_cv_api/modules/src/Shared/Logger/logError";
 const app = new Hono();
 
 app.use(async (c, next) => {
 	try {
 		await next();
 	} catch (err) {
+		logError(err);
 		return c.json({ error: err }, 500);
 	}
 });
@@ -42,7 +44,7 @@ export default {
 	fetch: app.fetch,
 	serve: {
 		idleTimeout: 30000,
-		development: process.env.NODE_ENV === "development",
+		development: process.env.ENV === "development",
 		// Add error handler for server-level errors
 		error(error: Error) {
 			console.error("[Server Error]:", error);

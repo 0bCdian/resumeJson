@@ -7,7 +7,7 @@
 	},
 	"scripts": {
 		"dev": "bun run --hot src/index.ts",
-		"build": "bun build ./src/index.ts --outdir ./dist --target bun",
+		"build": "bun build ./src/index.ts  --target bun --sourcemap=linked --format=esm --outdir ./dist",
 		"build:test": "bun build ./src/index.ts --sourcemap --outdir ./dist-test --target bun",
 		"start": "bun run ./dist/index.js",
 		"clean": "rm -rf dist",
@@ -21,12 +21,12 @@
 		"typescript": "^5.0.0"
 	},
 	"dependencies": {
-		"@hono/swagger-ui": "^0.5.0",
-		"@hono/zod-openapi": "^0.18.3",
+		"@hono/swagger-ui": "0.5.0",
+		"@hono/zod-openapi": "0.18.3",
 		"@json_cv_api/modules": "workspace:*",
 		"ai": "^4.0.11",
 		"firebase-admin": "^13.0.2",
-		"hono": "^4.6.12",
+		"hono": "4.6.16",
 		"node-poppler": "^7.2.2",
 		"zod": "^3.23.8"
 	}

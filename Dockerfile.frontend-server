@@ -22,6 +22,3 @@ ENV PORT=8080
 EXPOSE ${PORT}
 
 CMD [ "bun","run","start" ]
-
-
-

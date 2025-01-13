@@ -15,29 +15,33 @@ import { ResumeGet } from "@json_cv_api/modules/src/Resume/Application/ResumeGet
 import { ApiKeyValidate } from "@json_cv_api/modules/src/Auth/Application/ApiKeyValidate";
 import { UserUpdateQuota } from "@json_cv_api/modules/src/User/Application/UserUpdateQuota";
 import { CONFIG } from "./config/projectConfig";
-import { initializeFirestore } from "firebase-admin/firestore";
+import { type Firestore, initializeFirestore } from "firebase-admin/firestore";
 
 const app = initializeApp({
 	credential: applicationDefault(),
 	projectId: CONFIG.projectID,
 });
-const firebaseInstance = initializeFirestore(app);
-
+// We have to do this abomination because there's a bug in bun's grpc
+// implementation https://github.com/firebase/firebase-admin-node/issues/2744
+let fireStoreInstance: Firestore;
 if (CONFIG.env === "production") {
-	firebaseInstance.settings({
+	fireStoreInstance = initializeFirestore(app, { preferRest: true });
+	fireStoreInstance.settings({
 		databaseId: CONFIG.dbID,
 	});
+} else {
+	fireStoreInstance = initializeFirestore(app);
 }
-const apiKeyRepository = new FireStoreApiKeyRepository(firebaseInstance);
-const userRepository = new FireStoreUserRepository(firebaseInstance);
+const apiKeyRepository = new FireStoreApiKeyRepository(fireStoreInstance);
+const userRepository = new FireStoreUserRepository(fireStoreInstance);
 const tokenizer = new TokenizerService();
 const resumeRepository = new FireStoreResumeRepository(
-	firebaseInstance,
+	fireStoreInstance,
 	CONFIG.timeToExpireCache,
 );
 const llmResumeRepository = new OpenAIResumeRepository(CONFIG.openAIApiKey);
 const jobRepository = new FireStoreJobRepository(
-	firebaseInstance,
+	fireStoreInstance,
 	CONFIG.timeToExpireCache,
 );
 const jobUpdate = new JobUpdate(jobRepository);

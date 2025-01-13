@@ -1,5 +1,5 @@
 const {
-	ENV = "development",
+	ENV = "production",
 	FIRESTORE_PROJECT_ID,
 	PORT = 3000,
 	DB_ID = "(default)",

@@ -61,7 +61,7 @@ function RouteComponent() {
 						<form method="dialog" className="w-full mb-4">
 							<CopyInput value={apiRaw} />
 							<button
-								type="button"
+								type="submit"
 								onClick={() => {
 									setApiRaw("");
 								}}

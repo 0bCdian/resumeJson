@@ -8,8 +8,6 @@ COPY ./package.json .
 
 RUN bun install --frozen-lockfile && bun run build:server
 
-RUN apk update && apk add poppler-utils --no-cache
-RUN apk add --upgrade --no-cache ca-certificates && update-ca-certificates
 WORKDIR /build/packages/server
 ENV PORT=8080
 ENV ENV="production"

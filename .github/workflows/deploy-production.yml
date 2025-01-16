@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+    path:
+      - "packages/**"
 jobs:
   deploy-main:
     uses: ./.github/workflows/deploy.yml

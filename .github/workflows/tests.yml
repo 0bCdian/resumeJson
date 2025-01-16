@@ -1,18 +1,11 @@
-name: tests
+name: Reusable tests
 
 on:
-  pull_request:
-    types:
-      - opened
-      - edited
-      - synchronize
-      - reopened
-    branches:
-      - staging
-      - main
-    paths:
-      - "packages/**"
-  workflow_dispatch:
+  workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
 
 jobs:
   biome:

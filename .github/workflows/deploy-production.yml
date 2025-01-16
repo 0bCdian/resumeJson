@@ -1,12 +1,13 @@
 name: Production deploy
 on:
   push:
-    branches:
-      - main
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
     path:
       - "packages/**"
 jobs:
   deploy-main:
+    if: github.ref == 'refs/heads/main'
     uses: ./.github/workflows/deploy.yml
     with:
       environment: "production"

@@ -1,6 +1,10 @@
 # ResumeJson
+A small api that parses pdf or text resumes to [json resume schema](https://jsonresume.org/).
 
-[[_TOC_]]
+![image](https://github.com/user-attachments/assets/9d4a36f2-0fa7-491d-8cee-62cb73840633)
+![image](https://github.com/user-attachments/assets/f82613f3-3c25-4ce0-a020-84aeb8aa2684)
+![image](https://github.com/user-attachments/assets/f74c4d60-a5ca-4c9c-b1e8-da79a21befd7)
+![image](https://github.com/user-attachments/assets/351df48f-0899-4690-b078-56b69c87a1da)
 
 ## About
 
@@ -28,6 +32,22 @@ This project consists of a monorepo with 4 main packages:
 
 This project features a ci/cd pipeline that starts when making a pull request
 off of staging (the main develop branch) and first, test are run and the results
-commented in the same pr autmatically, then on merge to main the apps are built
+commented in the same pr automatically, then on merge to staging/main the apps are built
 and pushed to artifact registry, and then cloud run services are deployed to the
-staging project in GCP
+corresponding projects in GCP. 
+
+![image](https://github.com/user-attachments/assets/802fada0-a3c4-49f7-9a66-2907e86e0d3d)
+![image](https://github.com/user-attachments/assets/b7062143-4771-4ad4-9db8-56e2fac9217c)
+
+## Development workflow
+
+![image](https://github.com/user-attachments/assets/02e52e01-3eac-469a-a91f-37438f839528)
+
+## Infra
+All the infra for this project is defined here in a [separate repo](https://github.com/0bCdian/resumeJson-infra), but the tldr of services used is:
+- Cloud run for the services.
+- Cloud storage for the test reports.
+- Secret manager for managing sensitive api keys.
+- Firestore as the main DB.
+- And service accounts for the services to access gcp resources.
+

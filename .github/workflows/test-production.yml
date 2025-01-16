@@ -14,6 +14,6 @@ on:
   workflow_dispatch:
 jobs:
   test-production:
-    uses: ./github/workflows/tests.yml
+    uses: ./.github/workflows/tests.yml
     with:
       environment: production

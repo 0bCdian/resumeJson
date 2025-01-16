@@ -13,7 +13,7 @@ on:
       - "packages/**"
   workflow_dispatch:
 jobs:
-  test-staging:
+  test-production:
     uses: ./github/workflows/tests.yml
     with:
       environment: production

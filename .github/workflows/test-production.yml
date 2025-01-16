@@ -1,0 +1,19 @@
+name: tests-production
+
+on:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
+      - reopened
+    branches:
+      - main
+    paths:
+      - "packages/**"
+  workflow_dispatch:
+jobs:
+  test-staging:
+    uses: ./github/workflows/tests.yml
+    with:
+      environment: production
